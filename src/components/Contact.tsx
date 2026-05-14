@@ -203,10 +203,6 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           <div>Ababiya Darge :: Carnegie Mellon University, Qatar :: ML + Systems</div>
-          <div className="text-ink-faint/50">
-            Built with Vite, React, TypeScript, Tailwind, motion/react.
-            Fonts: Fraunces + IBM Plex Mono.
-          </div>
         </motion.div>
       </div>
     </section>
