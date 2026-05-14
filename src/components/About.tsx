@@ -82,14 +82,16 @@ export function About() {
             {/* About text */}
             <div className="pl-2 sm:pl-4 space-y-3 text-ink leading-relaxed">
               <Line delay={0.50}>
-                I am a CS student at the intersection of machine learning and systems programming.
-                My work lives close to the metal: designing systems that run ML workloads
-                efficiently, and building models that function in resource-constrained environments.
+                CS freshman at Carnegie Mellon Qatar, concentrating in ML and Systems.
+                Before CMU I built apps used by 100,000+ people, interned at a national
+                digital-ID agency, and graduated valedictorian with a 99.67 GPA and a
+                574/600 on the Ethiopian National Exam — top 0.01%, #1 in Physics among
+                580,000 candidates.
               </Line>
               <Line delay={0.58}>
-                When not in the lab, I trace kernel internals, debug distributed protocols,
-                or think about why gradient descent converges. I believe good systems thinking
-                and rigorous ML theory reinforce each other more than most people admit.
+                I care about software that ships and reaches real people. Most of my projects
+                solve problems I watched communities face firsthand — exam access, digital
+                literacy, civic infrastructure — built with whatever stack gets the job done.
               </Line>
             </div>
 
@@ -106,10 +108,10 @@ export function About() {
 
             <div className="pl-2 sm:pl-4 space-y-1.5 text-ink-muted">
               {[
-                ['COURSEWORK', 'Operating Systems, Deep Learning, Distributed Systems'],
-                ['RESEARCH',   'ML inference optimization on edge hardware'],
-                ['READING',    'The Art of Multiprocessor Programming, Bishop\'s PRML'],
-                ['BUILDING',   'Things that process, predict, and persist'],
+                ['COURSEWORK', 'Fundamentals of Programming, Differentiation & Integration, Intro to CS Concepts'],
+                ['INTERNED',   'Fayda Digital ID — Python, RFID, encrypted databases (Aug 2024)'],
+                ['AWARD',      '2nd Place Ethiopian National Math Olympiad · ALX Hackathon 3rd Place'],
+                ['BUILDING',   'Tools that solve real problems for real communities'],
               ].map(([key, val], i) => (
                 <Line key={key} delay={0.75 + i * 0.05}>
                   <span className="text-ink-faint">[{key}]</span>

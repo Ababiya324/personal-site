@@ -157,7 +157,7 @@ export function Hero() {
               transition={{ delay: 0.5, duration: 0.5 }}
             >
               {[
-                { icon: Github,   label: 'GitHub',   href: '#' },
+                { icon: Github,   label: 'GitHub',   href: 'https://github.com/Ababiya324' },
                 { icon: Linkedin, label: 'LinkedIn', href: '#' },
                 { icon: FileText, label: 'Resume',   href: '#' },
               ].map(({ icon: Icon, label, href }) => (
