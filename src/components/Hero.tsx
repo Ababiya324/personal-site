@@ -143,7 +143,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5 }}
             >
-              <div>CS @ Carnegie Mellon Qatar</div>
+              <div>CS @ Carnegie Mellon University</div>
               <div>
                 ML + Systems
               </div>
@@ -159,7 +159,7 @@ export function Hero() {
               {[
                 { icon: Github,   label: 'GitHub',   href: 'https://github.com/Ababiya324' },
                 { icon: Linkedin, label: 'LinkedIn', href: '#' },
-                { icon: FileText, label: 'Resume',   href: '#' },
+                { icon: FileText, label: 'Resume',   href: 'https://drive.google.com/file/d/1crt84AL4nu8FlNeJgqsDzVPlpSCHpgmC/view?usp=sharing' },
               ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
