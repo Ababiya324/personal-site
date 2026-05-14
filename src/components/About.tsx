@@ -106,7 +106,7 @@ export function About() {
 
             <div className="pl-2 sm:pl-4 space-y-1.5 text-ink-muted">
               {[
-                ['COURSEWORK', 'Operating Systems, Deep Learning, Distributed Systems'],
+                ['COURSEWORK', 'Intro to Computer Systems, Imperative Computation, Fundamentals of Programming & CS, Concepts of Mathematics, Applied Software Engineering, Distributed Systems, Functional Programming'],
                 ['RESEARCH',   'ML inference optimization on edge hardware'],
                 ['READING',    'The Art of Multiprocessor Programming, Bishop\'s PRML'],
                 ['BUILDING',   'Things that process, predict, and persist'],
