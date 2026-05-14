@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Ababiya\\\\Downloads\\\\portf\" -ErrorAction SilentlyContinue; if \\(-not \\(Test-Path \"c:\\\\Users\\\\Ababiya\\\\Downloads\\\\portf\"\\)\\) { \"Directory does not exist\" } else { \"Directory exists\" })"
-    ]
-  }
-}
