@@ -66,10 +66,33 @@ export const EXPERIENCE: Experience[] = [
   {
     id: 'fayda',
     company: 'Fayda Digital ID',
-    role: 'Intern',
-    period: '2024',
-    bullets: [],
-    tags: ['Digital Identity', 'GovTech'],
+    role: 'Technical Intern',
+    period: 'Aug 2024 · Ethiopia',
+    bullets: [
+      'Developed a digital ID system using Python, RFID encoders, and encrypted databases with an online verification portal serving staff and students.',
+    ],
+    tags: ['Python', 'RFID', 'Databases', 'GovTech'],
+  },
+  {
+    id: 'hp-forage',
+    company: 'HP (Forage)',
+    role: 'Software Engineering Virtual Intern',
+    period: 'Virtual',
+    bullets: [
+      'Developed a web server application in Java Spring Boot with HTTP request handling and JSON data upload support.',
+      'Implemented unit tests to validate application performance.',
+    ],
+    tags: ['Java', 'Spring Boot', 'REST API', 'Unit Testing'],
+  },
+  {
+    id: 'tigray-repair',
+    company: 'Repairing Initiative – Tigray Region',
+    role: 'Volunteer',
+    period: 'Ethiopia',
+    bullets: [
+      'Repaired 200+ devices in a war-torn region, taught digital literacy to students, and created troubleshooting documentation.',
+    ],
+    tags: ['Hardware', 'Community', 'Digital Literacy'],
   },
 ];
 
