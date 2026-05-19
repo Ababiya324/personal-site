@@ -106,7 +106,18 @@ export function Contact() {
     e.preventDefault();
     if (!validate()) return;
     setPhase('sending');
-    setTimeout(() => setPhase('sent'), 1200);
+
+    const subject = fields.subject.value.trim() || '(no subject)';
+    const body = [
+      `From: ${fields.name.value} <${fields.email.value}>`,
+      '',
+      fields.message.value,
+    ].join('\n');
+
+    const mailto = `mailto:ababiyadarge@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
+    setTimeout(() => setPhase('sent'), 400);
   };
 
   return (
