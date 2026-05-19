@@ -115,7 +115,11 @@ export function Contact() {
     ].join('\n');
 
     const mailto = `mailto:ababiyadarge@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    const a = document.createElement('a');
+    a.href = mailto;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 
     setTimeout(() => setPhase('sent'), 400);
   };
@@ -150,9 +154,9 @@ export function Contact() {
               transition={{ duration: 0.4 }}
             >
               <CheckCircle size={40} className="text-success" />
-              <div className="text-ink font-mono">Message sent successfully.</div>
+              <div className="text-ink font-mono">Email client opened.</div>
               <div className="text-ink-muted text-sm">
-                I will get back to you at{' '}
+                Complete sending in your email app. I will reply to{' '}
                 <span className="text-ink">{fields.email.value}</span>.
               </div>
               <button
