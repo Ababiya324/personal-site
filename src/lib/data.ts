@@ -1,4 +1,4 @@
-import type { Project, SkillNode, SkillEdge, NavSection } from '../types';
+import type { Project, SkillNode, SkillEdge, NavSection, Experience } from '../types';
 
 export const BOOT_LINES: Array<{ text: string; delay: number; type?: 'ok' | 'warn' | 'plain' }> = [
   { text: 'NeXTSTEP/CMQ  Release 0.1.0  (POSIX_EXTENDED)', delay: 0, type: 'plain' },
@@ -16,6 +16,61 @@ export const BOOT_LINES: Array<{ text: string; delay: number; type?: 'ok' | 'war
   { text: 'Starting portfolio daemon...                               [ OK ]', delay: 1360, type: 'ok' },
   { text: '', delay: 1440 },
   { text: 'init: user mode started, pid 1', delay: 1500, type: 'plain' },
+];
+
+export const EXPERIENCE: Experience[] = [
+  {
+    id: 'eclipse',
+    company: 'Eclipse Foundation',
+    role: 'Committer Support',
+    period: '2024 – 2025',
+    bullets: [
+      'Provided support for the Eclipse Foundation, the largest open-source organisation in Europe.',
+    ],
+    tags: ['Open Source', 'Java', 'Community'],
+  },
+  {
+    id: 'nanmo-ai',
+    company: 'NANMO',
+    role: 'AI / Content Engineer Intern',
+    period: '2024 – 2025',
+    bullets: [
+      'Built the content parsing pipeline that structures uploaded PDFs and videos into Nanmo\'s course format.',
+      'Integrated a translation API to generate course content in Hindi, Urdu, and Tagalog.',
+      'Implemented logic to auto-generate multiple-choice questions from parsed course content.',
+    ],
+    tags: ['Python', 'NLP', 'Translation API', 'LLM'],
+  },
+  {
+    id: 'nanmo-be',
+    company: 'NANMO',
+    role: 'Backend Developer Intern',
+    period: '2024 – 2025',
+    bullets: [
+      'Designed and managed the database schema for users, courses, enrollments, progress, certifications, and XP.',
+      'Set up authentication and role-based access control (RBAC) for all three account types.',
+      'Built and maintained the API layer and file storage for uploaded videos and PDFs.',
+    ],
+    tags: ['Node.js', 'SQL', 'REST API', 'RBAC'],
+  },
+  {
+    id: 'nanmo-swe',
+    company: 'NANMO',
+    role: 'Software Engineer Intern',
+    period: '2024',
+    bullets: [
+      'Created a translation pipeline to localise course content across multiple languages.',
+    ],
+    tags: ['Python', 'Pipeline'],
+  },
+  {
+    id: 'fayda',
+    company: 'Fayda Digital ID',
+    role: 'Intern',
+    period: '2024',
+    bullets: [],
+    tags: ['Digital Identity', 'GovTech'],
+  },
 ];
 
 export const PROJECTS: Project[] = [
@@ -153,11 +208,12 @@ export const SKILL_EDGES: SkillEdge[] = [
 ];
 
 export const NAV_SECTIONS: NavSection[] = [
-  { id: 'hero',     label: 'Home',     shortcut: 'G H' },
-  { id: 'about',    label: 'About',    shortcut: 'G A' },
-  { id: 'projects', label: 'Projects', shortcut: 'G P' },
-  { id: 'skills',   label: 'Skills',   shortcut: 'G S' },
-  { id: 'contact',  label: 'Contact',  shortcut: 'G C' },
+  { id: 'hero',       label: 'Home',       shortcut: 'G H' },
+  { id: 'about',      label: 'About',      shortcut: 'G A' },
+  { id: 'experience', label: 'Experience', shortcut: 'G E' },
+  { id: 'projects',   label: 'Projects',   shortcut: 'G P' },
+  { id: 'skills',     label: 'Skills',     shortcut: 'G S' },
+  { id: 'contact',    label: 'Contact',    shortcut: 'G C' },
 ];
 
 export const BUILD_HASH = 'a4f2c91';

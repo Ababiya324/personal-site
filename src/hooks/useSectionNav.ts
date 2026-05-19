@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 const SHORTCUTS: Record<string, string> = {
   h: 'hero',
   a: 'about',
+  e: 'experience',
   p: 'projects',
   s: 'skills',
   c: 'contact',
