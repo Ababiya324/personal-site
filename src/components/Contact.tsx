@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
-import { Send, CheckCircle } from 'lucide-react';
-
-type Phase = 'idle' | 'sending' | 'sent';
+import { motion } from 'motion/react';
+import { Mail } from 'lucide-react';
 
 interface Field {
   value: string;
@@ -24,10 +22,7 @@ function TerminalInput({
 }) {
   return (
     <div className="grid grid-cols-[7rem_1fr] sm:grid-cols-[9rem_1fr] items-start gap-2 py-2 border-b border-border last:border-b-0">
-      <label
-        htmlFor={id}
-        className="text-ink-muted text-sm pt-1 select-none"
-      >
+      <label htmlFor={id} className="text-ink-muted text-sm pt-1 select-none">
         [{label}]:
       </label>
       <div>
@@ -74,8 +69,6 @@ function TerminalTextarea({
 }
 
 export function Contact() {
-  const reduced = useReducedMotion();
-  const [phase, setPhase] = useState<Phase>('idle');
   const [fields, setFields] = useState({
     name:    { value: '', error: '' },
     email:   { value: '', error: '' },
@@ -95,6 +88,9 @@ export function Contact() {
     if (!next.email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(next.email.value)) {
       next.email.error = 'valid email required'; ok = false;
     }
+    if (!next.subject.value.trim()) {
+      next.subject.error = 'subject is required'; ok = false;
+    }
     if (!next.message.value.trim()) {
       next.message.error = 'message cannot be empty'; ok = false;
     }
@@ -102,26 +98,15 @@ export function Contact() {
     return ok;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleOpen = () => {
     if (!validate()) return;
-    setPhase('sending');
-
-    const subject = fields.subject.value.trim() || '(no subject)';
-    const body = [
-      `From: ${fields.name.value} <${fields.email.value}>`,
-      '',
-      fields.message.value,
-    ].join('\n');
-
-    const mailto = `mailto:ababiyadarge@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    const a = document.createElement('a');
-    a.href = mailto;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    setTimeout(() => setPhase('sent'), 400);
+    const body = `${fields.message.value}\n\n— ${fields.name.value} (${fields.email.value})`;
+    const url =
+      `https://mail.google.com/mail/?view=cm&fs=1` +
+      `&to=ababiyadarge@gmail.com` +
+      `&su=${encodeURIComponent(fields.subject.value)}` +
+      `&body=${encodeURIComponent(body)}`;
+    window.open(url, '_blank');
   };
 
   return (
@@ -143,75 +128,59 @@ export function Contact() {
             <div className="window-dot bg-accent" />
             <div className="window-dot" />
             <div className="window-dot" />
-            <span className="ml-2">./contact.sh -- send message</span>
+            <span className="ml-2">./contact.sh -- compose email</span>
           </div>
 
-          {phase === 'sent' ? (
-            <motion.div
-              className="p-8 flex flex-col items-center gap-4 text-center"
-              initial={{ opacity: 0, scale: reduced ? 1 : 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
+          <div className="p-5 sm:p-6 space-y-1 font-mono">
+            <div className="text-ink-muted text-xs mb-4">
+              <span className="prompt-prefix">$ </span>
+              ./contact.sh --to=ababiyadarge@gmail.com
+            </div>
+
+            <TerminalInput label="name"    id="name"    field={fields.name}    onChange={set('name')} />
+            <TerminalInput label="email"   id="email"   field={fields.email}   onChange={set('email')}   type="email" />
+            <TerminalInput label="subject" id="subject" field={fields.subject} onChange={set('subject')} />
+            <TerminalTextarea field={fields.message} onChange={set('message')} />
+          </div>
+
+          <div className="px-5 sm:px-6 pb-5 flex items-center justify-between">
+            <div className="text-ink-muted text-xs">
+              <span className="prompt-prefix">$</span>{' '}
+              <span className="cursor" />
+            </div>
+            <button
+              type="button"
+              onClick={handleOpen}
+              className="flex items-center gap-2 px-5 py-2.5 bg-accent text-bg font-mono text-sm hover:opacity-90 transition-colors"
             >
-              <CheckCircle size={40} className="text-success" />
-              <div className="text-ink font-mono">Email client opened.</div>
-              <div className="text-ink-muted text-sm">
-                Complete sending in your email app. I will reply to{' '}
-                <span className="text-ink">{fields.email.value}</span>.
-              </div>
-              <button
-                onClick={() => {
-                  setPhase('idle');
-                  setFields(f =>
-                    Object.fromEntries(Object.keys(f).map(k => [k, { value: '', error: '' }])) as typeof fields
-                  );
-                }}
-                className="text-xs text-ink-muted hover:text-ink font-mono mt-2 border border-border px-3 py-1.5 hover:border-border-strong transition-colors"
-              >
-                send another
-              </button>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="p-5 sm:p-6 space-y-1 font-mono">
-                <div className="text-ink-muted text-xs mb-4">
-                  <span className="prompt-prefix">$ </span>
-                  ./contact.sh --to=ababiyadarge@gmail.com
-                </div>
-
-                <TerminalInput label="name"    id="name"    field={fields.name}    onChange={set('name')} />
-                <TerminalInput label="email"   id="email"   field={fields.email}   onChange={set('email')}   type="email" />
-                <TerminalInput label="subject" id="subject" field={fields.subject} onChange={set('subject')} />
-                <TerminalTextarea field={fields.message} onChange={set('message')} />
-              </div>
-
-              <div className="px-5 sm:px-6 pb-5 flex items-center justify-between">
-                <div className="text-ink-muted text-xs">
-                  <span className="prompt-prefix">$</span>{' '}
-                  <span className="cursor" />
-                </div>
-                <button
-                  type="submit"
-                  disabled={phase === 'sending'}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-accent text-bg font-mono text-sm hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  {phase === 'sending' ? (
-                    <>sending...</>
-                  ) : (
-                    <>
-                      <Send size={13} />
-                      send_message
-                    </>
-                  )}
-                </button>
-              </div>
-            </form>
-          )}
+              <Mail size={13} />
+              Open email
+            </button>
+          </div>
         </motion.div>
 
-        {/* Footer */}
         <motion.div
-          className="mt-12 text-center text-xs text-ink-faint font-mono space-y-1"
+          className="mt-6 text-center text-xs font-mono space-y-1"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-ink select-all">ababiyadarge@gmail.com</div>
+          <div className="text-ink-faint">
+            Opens in Gmail. If that doesn't work, email me directly at the address above or use the{' '}
+            <a
+              href="mailto:ababiyadarge@gmail.com"
+              className="underline hover:text-ink-muted transition-colors"
+            >
+              mailto: fallback
+            </a>
+            .
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="mt-8 text-center text-xs text-ink-faint font-mono"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
